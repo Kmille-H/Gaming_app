@@ -1,9 +1,8 @@
-name: Branch name
-
 on: pull_request
-
+name: Branch name
 jobs:
   build:
+    name: Check branch name
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -11,7 +10,7 @@ jobs:
         id: branchnamecheck
         if: github.base_ref == 'main'
         run: |
-             echo "base ref is main checking branch name..."
+          echo "base ref is main checking branch name..."
           ALLOWED_PREFIXES="feature feat fix hotfix release chore docs"
           BRANCH_NAME_VALID=false
           PREFIXES_ARRAY=$(echo $ALLOWED_PREFIXES | tr " " "\n")
@@ -30,4 +29,3 @@ jobs:
               echo "[FAIL] - Branch ${{ github.head_ref }} does not respect the naming convention, please rename"  
               exit 1
           fi
-
