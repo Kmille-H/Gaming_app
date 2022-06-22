@@ -1,0 +1,33 @@
+name: Branch name
+
+on: pull_request
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check branch name respects naming conventions
+        id: branchnamecheck
+        if: github.base_ref == 'main'
+        run: |
+             echo "base ref is main checking branch name..."
+          ALLOWED_PREFIXES="feature feat fix hotfix release chore docs"
+          BRANCH_NAME_VALID=false
+          PREFIXES_ARRAY=$(echo $ALLOWED_PREFIXES | tr " " "\n")
+          for PREFIX in $PREFIXES_ARRAY ; 
+          do 
+          if [[ "${{ github.head_ref }}" == $PREFIX/* ]]; then
+              echo "${{ github.head_ref }} respects prefix $PREFIX"
+              BRANCH_NAME_VALID=true
+          else
+              echo "${{ github.head_ref }} DOES NOT respects prefix $PREFIX"
+          fi
+          done
+          if [[ $BRANCH_NAME_VALID == true ]]; then
+              echo "[SUCCESS] - Your branch name respect the naming convention"  
+          else
+              echo "[FAIL] - Branch ${{ github.head_ref }} does not respect the naming convention, please rename"  
+              exit 1
+          fi
+

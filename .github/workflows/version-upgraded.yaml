@@ -1,0 +1,27 @@
+on: 
+  workflow_dispatch:
+    branches:
+      - main
+name: App version
+jobs:
+  build:
+    name: Check app version is upgraded
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check version is upgraded
+        if: github.base_ref == 'main'
+        run: |
+          echo "base ref is main checking if version is upgraded..."
+          git show origin/main:pubspec.yaml >> previous_pubspec.yaml
+          VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2 | cut -d '+' -f1)
+          echo "::set-output name=VERSION::$VERSION"
+          PREVIOUS_VERSION=$(more previous_pubspec.yaml | grep version: | cut -d ' ' -f2 | cut -d '+' -f1)
+          echo "::set-output name=PREVIOUS_VERSION::$PREVIOUS_VERSION"
+          echo "Upgrade version $PREVIOUS_VERSION to $VERSION"
+          if [ $PREVIOUS_VERSION == $VERSION ]; then
+            echo "[FAIL] - App version is not upgraded"  
+            exit 1
+          else
+            echo "[SUCCESS] - App version is upgraded"  
+          fi

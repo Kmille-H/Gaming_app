@@ -1,0 +1,64 @@
+on:
+  workflow_dispatch:
+    branches:
+      - main
+name: Build and push release appBundle on Github
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-18.04
+    env:
+      STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+      ALIAS_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
+      ALIAS: ${{ secrets.ALIAS }}
+      KEY_PATH: key.jks
+    steps:
+      - uses: actions/checkout@v2
+      - name: Retrieve Release Version
+        id: versionstep
+        run: |
+          VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2)
+          echo "::set-output name=VERSION::$VERSION"
+      - name: Check release does not exist
+        run: |
+          if [ -z "$(git tag | grep ${{ steps.versionstep.outputs.VERSION }})" ]; then
+              echo "Release does not exist"
+          else
+              echo "Release already exists ! Aborting !"
+              exit 1
+          fi
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+        #Retrieving the keystore from github secrets
+      - run: echo $SIGNING_KEY | base64 -d > android/app/key.jks
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+      - run: echo $GOOGLE_SERVICES | base64 -d > android/app/google-services.json
+        env:
+          GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
+      - uses: subosito/flutter-action@v1
+      - name: Flutter build appbundle
+        run: |
+          flutter pub get
+          flutter build appbundle
+      - name: Create Github Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload appbundle
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: .build/app/outputs/bundle/release/app-release.aab
+          asset_name: app-release.aab
+          asset_content_type: application/zip
