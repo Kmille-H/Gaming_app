@@ -3,10 +3,10 @@ name: Branch name
 on: pull_request
 
 jobs:
-  auto-approve:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Check branch name respects naming conventions
         id: branchnamecheck
         if: github.base_ref == 'main'

@@ -5,7 +5,7 @@ jobs:
     name: Check commit(s)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Check commit name
         id: checkcommitname
         if: github.base_ref == 'main'

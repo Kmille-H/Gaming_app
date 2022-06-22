@@ -6,9 +6,9 @@ name: App version
 jobs:
   build:
     name: Check app version is upgraded
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Check version is upgraded
         if: github.base_ref == 'main'
         run: |
