@@ -7,3 +7,4 @@ _Feat_
 - Init README.md
 - Init CHANGELOG.md
 - Init launch.json
+- Init Firebase Hosting
