@@ -11,6 +11,7 @@ jobs:
         if: github.base_ref == 'main'
         run: |
           echo "base ref is main checking if branch is up to date..."
+          git fetch
           count=$(git rev-list --count origin/${{ github.head_ref }}..origin/${{ github.base_ref }})
           if [ $count == 0 ]; then
             echo "[SUCCESS] - Your branch is up to date"  

@@ -11,6 +11,7 @@ jobs:
         if: github.base_ref == 'main'
         run: |
           echo "base ref is main checking changelog..."
+          git fetch
           if [ -z "$(git diff --name-only origin/main | grep CHANGELOG.md)" ]; then
             echo "[FAIL] - Changelog has not been updated"
             exit 1
