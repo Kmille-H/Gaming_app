@@ -11,6 +11,7 @@ jobs:
         if: github.base_ref == 'main'
         run: |
           echo "base ref is main checking commit(s) name..."
+          git fetch
           count=$(git rev-list --count origin/${{ github.base_ref }}..origin/${{ github.head_ref }})
           ALLOWED_PREFIXES="feat fix docs style refactor test chore"
           PREFIXES_ARRAY=$(echo $ALLOWED_PREFIXES | tr " " "\n")
