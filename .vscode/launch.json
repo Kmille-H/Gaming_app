@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "web--retro-gaming--front",
+            "request": "launch",
+            // set a fixed http port for debugging locally
+            // because ping needs a callback that is a constant
+            "args": [
+                "-d",
+                "chrome",
+                "--web-port=5000",
+                "--web-enable-expression-evaluation",
+            ],
+            "program" : "lib/main.dart",
+            "type": "dart"
+        },
+        {
+            "name": "android--retro-gaming--front",
+            "request": "launch",
+            "args": [
+                "--debug",
+            ],
+            "type": "dart",
+            "program": "lib/main.dart"
+        },
+    ]
+}

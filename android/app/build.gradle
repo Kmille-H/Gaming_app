@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 31
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -41,11 +41,26 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    Properties propertiesRelease = new Properties()
+        propertiesRelease.setProperty('storePassword', String.valueOf(System.getenv('STORE_PASSWORD')))
+        propertiesRelease.setProperty('keyAliasPassword', String.valueOf(System.getenv('ALIAS_PASSWORD')))
+        propertiesRelease.setProperty('keyAlias', String.valueOf(System.getenv('ALIAS')))
+        propertiesRelease.setProperty('storeFile', String.valueOf(System.getenv('KEY_PATH')))
+
+    signingConfigs {
+        release {
+            storeFile file(propertiesRelease['storeFile'])
+            storePassword propertiesRelease["storePassword"]
+            keyAlias propertiesRelease["keyAlias"]
+            keyPassword propertiesRelease["keyAliasPassword"]
+        }
+    }
+    
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.retro_gaming_app"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 22
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -54,7 +69,16 @@ android {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+      
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources true
+       
         }
     }
 }
