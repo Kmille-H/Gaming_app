@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+_Feat_
+- Template pull request
+- pubsepc dependecies & analysis options added
+
 ## 0.1.0
 _Feat_
 - Init workflow GitHub
