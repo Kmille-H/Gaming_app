@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'settings_controller.dart';
+import 'package:retro_gaming_app/src/settings/settings_controller.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
