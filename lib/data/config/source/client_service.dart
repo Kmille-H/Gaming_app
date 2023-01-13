@@ -18,10 +18,8 @@ class GraphQLService {
         store: InMemoryStore(),
       ),
     );
-
+    debugPrint('url : ${httpLink.uri}');
     client = client.copyWith(link: httpLink);
-    debugPrint('url : ${httpLink.defaultHeaders}');
-    return client;
   }
 
   Future<BaseResponse<dynamic, BaseError>> performQuery(
@@ -33,6 +31,9 @@ class GraphQLService {
       );
 
       final QueryResult result = await client.query(options);
+
+      debugPrint(result.data.toString());
+      debugPrint(result.exception?.toString());
 
       if (result.hasException) {
         return BaseResponse.error(

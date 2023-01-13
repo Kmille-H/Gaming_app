@@ -21,7 +21,9 @@ String listplatform = '''
 class PlatformNotifier extends StateNotifier<PlatformState> {
   PlatformNotifier(
     this.graphQLService,
-  ) : super(PlatformState);
+  ) : super(
+          PlatformState.initial(),
+        );
 
   late final GraphQLService graphQLService;
 

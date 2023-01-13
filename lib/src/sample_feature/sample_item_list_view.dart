@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:retro_gaming_app/src/settings/settings_view.dart';
 import 'package:retro_gaming_app/src/sample_feature/sample_item.dart';
