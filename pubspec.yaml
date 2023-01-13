@@ -16,6 +16,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  flutter_riverpod: ^2.0.2  
+  freezed_annotation: ^2.0.4
+  graphql_flutter: ^5.1.0
   shared_preferences: ^2.0.8
 
 
@@ -26,6 +29,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  freezed: 2.0.3+1
+  json_serializable: ^6.2.0
+
+
 
 flutter:
   uses-material-design: true
