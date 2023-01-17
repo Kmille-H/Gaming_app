@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:retro_gaming_app/data/config/source/client_service.dart';
+import 'package:retro_gaming_app/src/notifiers/game_notifier.dart';
 import 'package:retro_gaming_app/src/notifiers/platform_notifier.dart';
 
 class MainProviders extends StatelessWidget {
@@ -20,6 +21,11 @@ class MainProviders extends StatelessWidget {
         ),
         Provider<PlatformNotifier>(
           create: (context) => PlatformNotifier(
+            context.read<GraphQLService>(),
+          ),
+        ),
+        Provider<GameNotifier>(
+          create: (context) => GameNotifier(
             context.read<GraphQLService>(),
           ),
         ),

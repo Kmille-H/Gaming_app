@@ -7,7 +7,7 @@ import 'package:retro_gaming_app/src/sample_feature/sample_item.dart';
 String listplatform = '''
     query {
      platforms {
-            node{
+            nodes{
               id
               name
             }

@@ -2,10 +2,12 @@ String fetchAllPlatform() {
   return '''
     query {
      platforms {
-            node{
+            nodes{
               id
               name
+              
             }
+          }
         }
     }
    ''';

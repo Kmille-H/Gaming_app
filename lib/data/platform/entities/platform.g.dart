@@ -7,7 +7,7 @@ part of 'platform.dart';
 // **************************************************************************
 
 _$_Platforms _$$_PlatformsFromJson(Map<String, dynamic> json) => _$_Platforms(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
     );
 

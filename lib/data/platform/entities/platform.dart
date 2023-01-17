@@ -6,7 +6,7 @@ part 'platform.g.dart';
 @Freezed(makeCollectionsUnmodifiable: false)
 class Platforms with _$Platforms {
   const factory Platforms({
-    required String id,
+    required int id,
     required String name,
   }) = _Platforms;
 

@@ -2,15 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:retro_gaming_app/data/config/architecture/base_error.dart';
 import 'package:retro_gaming_app/data/config/source/client_service.dart';
 import 'package:retro_gaming_app/data/platform/entities/platform.dart';
-import 'package:retro_gaming_app/data/platform/state/platform_state.dart';
 
 String listplatform = '''
     query {
      platforms {
-            node{
+            nodes{
               id
               name
             }
@@ -18,30 +16,37 @@ String listplatform = '''
     }
 ''';
 
-class PlatformNotifier extends StateNotifier<PlatformState> {
+class PlatformNotifier extends StateNotifier<PlatformList> {
   PlatformNotifier(
     this.graphQLService,
   ) : super(
-          PlatformState.initial(),
+          const PlatformList(
+            platforms: [],
+          ),
         );
 
   late final GraphQLService graphQLService;
 
-  Future<Object> getPlatform({required List<Platforms> listPlatform}) async {
+  Future<PlatformList?> getPlatform() async {
     try {
       final response = await graphQLService.performQuery(listplatform);
 
-      if (response.data.toString().isEmpty) {
-        debugPrint('$response');
-        return 'error';
+      if (response.data.toString().isNotEmpty) {
+        return PlatformList(
+          platforms: (response.data['platforms']['nodes'] as List)
+              .map(
+                (value) => Platforms.fromJson(
+                  value as Map<String, dynamic>,
+                ),
+              )
+              .toList(),
+        );
       } else {
         debugPrint('$response');
-        return response.success.toString();
+        return null;
       }
     } on DioError {
-      return BaseError(
-        message: '',
-      );
+      return null;
     }
   }
 }

@@ -20,7 +20,7 @@ Platforms _$PlatformsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Platforms {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ mixin _$Platforms {
 abstract class $PlatformsCopyWith<$Res> {
   factory $PlatformsCopyWith(Platforms value, $Res Function(Platforms) then) =
       _$PlatformsCopyWithImpl<$Res>;
-  $Res call({String id, String name});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$PlatformsCopyWithImpl<$Res> implements $PlatformsCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -68,7 +68,7 @@ abstract class _$$_PlatformsCopyWith<$Res> implements $PlatformsCopyWith<$Res> {
           _$_Platforms value, $Res Function(_$_Platforms) then) =
       __$$_PlatformsCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class __$$_PlatformsCopyWithImpl<$Res> extends _$PlatformsCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -108,7 +108,7 @@ class _$_Platforms implements _Platforms {
       _$$_PlatformsFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
 
@@ -146,13 +146,13 @@ class _$_Platforms implements _Platforms {
 
 abstract class _Platforms implements Platforms {
   const factory _Platforms(
-      {required final String id, required final String name}) = _$_Platforms;
+      {required final int id, required final String name}) = _$_Platforms;
 
   factory _Platforms.fromJson(Map<String, dynamic> json) =
       _$_Platforms.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
