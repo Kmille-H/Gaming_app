@@ -6,12 +6,12 @@ part 'game.g.dart';
 @Freezed(makeCollectionsUnmodifiable: false)
 class Games with _$Games {
   const factory Games({
-    required int gameId,
+    required int id,
     required String name,
     required int platformId,
   }) = _Games;
 
-  factory Games.fromJson(Map<String, int> json) => _$GamesFromJson(json);
+  factory Games.fromJson(Map<String, dynamic> json) => _$GamesFromJson(json);
 }
 
 @Freezed(makeCollectionsUnmodifiable: false)

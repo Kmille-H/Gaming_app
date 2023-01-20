@@ -1,34 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:retro_gaming_app/data/config/source/client_service.dart';
 import 'package:retro_gaming_app/data/game/entities/game.dart';
-import 'package:provider/provider.dart';
 import 'package:retro_gaming_app/providers.dart';
 
-String listgame = '''
-    query {
-      platforms{
-    nodes{
-      name
-      id
-      games{
-        nodes{
-          name
-          id
-          platformId 
-        }
-      }
-      
-    }
-    
-  }
-    
-    }
-''';
-
 class SampleItemDetailsView extends ConsumerStatefulWidget {
-  const SampleItemDetailsView({Key? key}) : super(key: key);
+  final int consoleId;
+  const SampleItemDetailsView({
+    Key? key,
+    required this.consoleId,
+  }) : super(key: key);
   static const routeName = '/sample_item';
 
   @override
@@ -43,7 +26,11 @@ class _SampleItemDetailsView extends ConsumerState<SampleItemDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    AsyncValue<GamesList?> response = ref.watch(gameList);
+    AsyncValue<GamesList?> response = ref.watch(
+      gameList(
+        widget.consoleId,
+      ),
+    );
 
     return GraphQLProvider(
       client: ValueNotifier<GraphQLClient>(
@@ -72,10 +59,6 @@ class _SampleItemDetailsView extends ConsumerState<SampleItemDetailsView> {
             ),
           ),
         ),
-        // body: const Center(
-        //   child: Text('coucou'),
-        //   // child: Text(result.data!['platforms']['nodes'][index]['name'],),
-        // ),
       ),
     );
   }

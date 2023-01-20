@@ -24,8 +24,9 @@ final gameNotifier = Provider<GameNotifier>(
     ref.read(graphQl),
   ),
 );
-final gameList = FutureProvider<GamesList?>((ref) async {
+
+final gameList = FutureProvider.family<GamesList?, int>((ref, console) async {
   final repo = ref.watch(gameNotifier);
-  final resultGame = await repo.getGame();
+  final resultGame = await repo.getGame(console);
   return resultGame;
 });

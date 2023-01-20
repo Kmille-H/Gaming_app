@@ -20,7 +20,7 @@ Games _$GamesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Games {
-  int get gameId => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get platformId => throw _privateConstructorUsedError;
 
@@ -33,7 +33,7 @@ mixin _$Games {
 abstract class $GamesCopyWith<$Res> {
   factory $GamesCopyWith(Games value, $Res Function(Games) then) =
       _$GamesCopyWithImpl<$Res>;
-  $Res call({int gameId, String name, int platformId});
+  $Res call({int id, String name, int platformId});
 }
 
 /// @nodoc
@@ -46,14 +46,14 @@ class _$GamesCopyWithImpl<$Res> implements $GamesCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? gameId = freezed,
+    Object? id = freezed,
     Object? name = freezed,
     Object? platformId = freezed,
   }) {
     return _then(_value.copyWith(
-      gameId: gameId == freezed
-          ? _value.gameId
-          : gameId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: name == freezed
           ? _value.name
@@ -72,7 +72,7 @@ abstract class _$$_GamesCopyWith<$Res> implements $GamesCopyWith<$Res> {
   factory _$$_GamesCopyWith(_$_Games value, $Res Function(_$_Games) then) =
       __$$_GamesCopyWithImpl<$Res>;
   @override
-  $Res call({int gameId, String name, int platformId});
+  $Res call({int id, String name, int platformId});
 }
 
 /// @nodoc
@@ -86,14 +86,14 @@ class __$$_GamesCopyWithImpl<$Res> extends _$GamesCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? gameId = freezed,
+    Object? id = freezed,
     Object? name = freezed,
     Object? platformId = freezed,
   }) {
     return _then(_$_Games(
-      gameId: gameId == freezed
-          ? _value.gameId
-          : gameId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: name == freezed
           ? _value.name
@@ -111,13 +111,13 @@ class __$$_GamesCopyWithImpl<$Res> extends _$GamesCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Games implements _Games {
   const _$_Games(
-      {required this.gameId, required this.name, required this.platformId});
+      {required this.id, required this.name, required this.platformId});
 
   factory _$_Games.fromJson(Map<String, dynamic> json) =>
       _$$_GamesFromJson(json);
 
   @override
-  final int gameId;
+  final int id;
   @override
   final String name;
   @override
@@ -125,7 +125,7 @@ class _$_Games implements _Games {
 
   @override
   String toString() {
-    return 'Games(gameId: $gameId, name: $name, platformId: $platformId)';
+    return 'Games(id: $id, name: $name, platformId: $platformId)';
   }
 
   @override
@@ -133,7 +133,7 @@ class _$_Games implements _Games {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Games &&
-            const DeepCollectionEquality().equals(other.gameId, gameId) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.platformId, platformId));
@@ -143,7 +143,7 @@ class _$_Games implements _Games {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(gameId),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(platformId));
 
@@ -160,14 +160,14 @@ class _$_Games implements _Games {
 
 abstract class _Games implements Games {
   const factory _Games(
-      {required final int gameId,
+      {required final int id,
       required final String name,
       required final int platformId}) = _$_Games;
 
   factory _Games.fromJson(Map<String, dynamic> json) = _$_Games.fromJson;
 
   @override
-  int get gameId => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

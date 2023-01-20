@@ -15,7 +15,7 @@ class MainProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        // Create a GraphQLService instance.
+        /// Create a GraphQLService instance.
         Provider<GraphQLService>(
           create: (context) => GraphQLService()..initialize(),
         ),
