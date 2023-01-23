@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+    
         {
             "name": "web--retro-gaming--front",
             "request": "launch",
@@ -11,6 +12,8 @@
                 "chrome",
                 "--web-port=5000",
                 "--web-enable-expression-evaluation",
+                "--web-hostname",
+                "127.0.0.1"
             ],
             "program" : "lib/main.dart",
             "type": "dart"

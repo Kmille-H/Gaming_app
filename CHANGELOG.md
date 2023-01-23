@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+_Feat_
+- Set Riverpod state management
+- Connect queries with Platforms GraphlQl API
+
 ## 0.1.1
 _Feat_
 - Template pull request
