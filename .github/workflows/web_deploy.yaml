@@ -28,4 +28,4 @@ jobs:
         id: versionstep
         run: |
           VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2 | cut -d '+' -f1)
-          echo "::set-output name=VERSION::$VERSION"
+          echo "{VERSION}={$VERSION}" >> $GITHUB_OUTPUT

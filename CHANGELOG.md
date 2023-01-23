@@ -5,6 +5,9 @@ _Feat_
 - Set Riverpod state management
 - Connect queries with Platforms GraphlQl API
 
+_Fix_ 
+- Change workflow github Actions and set output
+
 ## 0.1.1
 _Feat_
 - Template pull request
