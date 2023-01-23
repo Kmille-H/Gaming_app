@@ -9,23 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v3
         with:
-          java-version: '12.x'
-      - name: Setup configuration files
-        run: |
-          echo "${{ secrets.FIREBASE_JS }}" | base64 -d > web/js/firebase.js
-      - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '3.0.1'
-          channel: 'stable'
+          distribution: 'adopt'
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
       - name: Flutter build web
         run: |
           flutter clean
           flutter pub get
           flutter build web
-      - name: Retrieve Release Version
-        id: versionstep
-        run: |
-          VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2 | cut -d '+' -f1)
-          echo "{VERSION}={$VERSION}" >> $GITHUB_OUTPUT
