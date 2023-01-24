@@ -15,9 +15,9 @@ jobs:
           echo "base ref is main checking if version is upgraded..."
           git show origin/main:pubspec.yaml >> previous_pubspec.yaml
           VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2 | cut -d '+' -f1)
-          echo "{VERSION}={$VERSION}" >> $GITHUB_OUTPUT
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           PREVIOUS_VERSION=$(more previous_pubspec.yaml | grep version: | cut -d ' ' -f2 | cut -d '+' -f1)
-          echo "{PREVIOUS_VERSION}={$$PREVIOUS_VERSION}" >> $GITHUB_OUTPUT
+          echo "PREVIOUS_VERSION=$$PREVIOUS_VERSION" >> $GITHUB_OUTPUT
           echo "Upgrade version $PREVIOUS_VERSION to $VERSION"
           if [ $PREVIOUS_VERSION == $VERSION ]; then
             echo "[FAIL] - App version is not upgraded"  

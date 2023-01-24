@@ -18,7 +18,7 @@ jobs:
         id: versionstep
         run: |
           VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2)
-          echo "{VERSION}={$VERSION}" >> $GITHUB_OUTPUT
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
       - name: Check release does not exist
         run: |
           if [ -z "$(git tag | grep ${{ steps.versionstep.outputs.VERSION }})" ]; then
@@ -37,7 +37,7 @@ jobs:
       - run: echo $GOOGLE_SERVICES | base64 -d > android/app/google-services.json
         env:
           GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v2
       - name: Flutter build appbundle
         run: |
           flutter pub get
