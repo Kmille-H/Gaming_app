@@ -20,6 +20,10 @@
 # is commented out by default.
 #.vscode/
 
+# IOS config
+ios/firebase_app_id_file.json
+ios/Runner/GoogleService-Info.plist
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -48,3 +52,4 @@ app.*.map.json
 /android/app/google-services.json
 /android/app/key.jks
 /android/key.jks
+lib/firebase_options.dart
