@@ -53,3 +53,4 @@ app.*.map.json
 /android/app/key.jks
 /android/key.jks
 lib/firebase_options.dart
+android/app/build/generated/res/google-services/debug/values/values.xml
